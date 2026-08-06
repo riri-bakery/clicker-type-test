@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4e7cf">
+  <meta name="description" content="내 캐릭터는 어떤 클릭 타입일까? 캐릭터의 성격과 분위기를 바탕으로 어울리는 소리와 촉감을 찾아보세요." data-config-meta="description">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="내 캐릭터는 어떤 클릭 타입일까?" data-config-meta="og:title">
+  <meta property="og:description" content="캐릭터의 성격과 분위기를 바탕으로 어울리는 소리와 촉감을 찾아보세요." data-config-meta="og:description">
+  <meta name="twitter:card" content="summary" data-config-meta="twitter:card">
+  <meta name="twitter:title" content="내 캐릭터는 어떤 클릭 타입일까?" data-config-meta="twitter:title">
+  <meta name="twitter:description" content="캐릭터의 성격과 분위기를 바탕으로 어울리는 소리와 촉감을 찾아보세요." data-config-meta="twitter:description">
+  <title data-config-title>캐릭터 클릭 타입 테스트 · 축BTI by 꾹꾹이 쿠키 클리커</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./public.css?v=20260805i">
+</head>
+<body>
+  <div class="public-app">
+    <header class="public-header">
+      <a class="brand-lockup" href="./index.html" aria-label="테스트 첫 화면으로">
+        <span id="headerServiceName">캐릭터 클릭 타입 테스트</span>
+        <small><span id="headerLegacyName">축BTI</span> by <span id="headerBrandName">꾹꾹이 쿠키 클리커</span></small>
+      </a>
+      <nav class="header-nav" aria-label="주요 메뉴">
+        <a href="./switches.html">보유 스위치 37개</a>
+        <span id="headerTestDetail" class="header-detail">13문항 · 약 3분</span>
+      </nav>
+    </header>
+
+    <div id="configNotice" class="public-notice" role="status" hidden></div>
+
+    <main>
+      <section id="introScreen" class="screen hero-screen" aria-labelledby="introTitle">
+        <div class="hero-copy">
+          <p class="public-kicker" id="serviceName">캐릭터 클릭 타입 테스트</p>
+          <h1 id="introTitle">내 캐릭터는 어떤 클릭 타입일까?</h1>
+          <p class="hero-question">차분하게 눌리는 타입일까,<br>통통 튀는 타입일까?</p>
+          <p id="introDescription" class="hero-description">캐릭터의 성격과 분위기를 바탕으로 어울리는 소리와 손끝 감각을 찾아보세요.</p>
+          <aside class="scope-notice" aria-label="테스트 범위와 해석 안내">
+            <strong>리리베이커리 보유 스위치 안에서 추천해요</strong>
+            <p>세상의 모든 스위치가 아니라, 리리베이커리가 현재 보유한 <b id="introSwitchCount">37개 스위치</b> 중에서 결과가 나옵니다.</p>
+            <p>스위치 속성과 캐릭터 해석의 연결은 리리베이커리의 주관적인 판단이므로 재미로 즐겨주세요.</p>
+          </aside>
+          <ul class="test-facts" aria-label="테스트 정보">
+            <li><b id="introQuestionCount">13문항</b><span>부담 없이</span></li>
+            <li><b id="introTimeEstimate">약 3분</b><span>금방 완성</span></li>
+            <li><b>지식 불필요</b><span>키보드를 몰라도</span></li>
+            <li><b>정답 없음</b><span>캐릭터답게</span></li>
+          </ul>
+          <button class="button button-primary button-large" id="startTestBtn" type="button">캐릭터 분석 시작하기</button>
+          <p class="brand-note" id="brandNote">꾹꾹이 쿠키 클리커의 실제 캐릭터 스위치 매칭 방식을 바탕으로 만든 테스트입니다.</p>
+        </div>
+        <div class="hero-visual" id="productMedia" aria-label="제품 이미지 영역">
+          <div class="media-placeholder" id="mediaPlaceholder">
+            <span class="cookie-button" aria-hidden="true"><i></i></span>
+            <p>캐릭터의 성격을<br>소리와 촉감으로 바꾸는 중</p>
+            <small>실제 제품 이미지로 교체할 수 있는 영역입니다.</small>
+          </div>
+        </div>
+      </section>
+
+      <section id="nameScreen" class="screen compact-screen" hidden aria-labelledby="nameScreenTitle">
+        <div class="step-card">
+          <button class="back-link" id="backToIntroBtn" type="button">← 소개로 돌아가기</button>
+          <p class="public-kicker">BEFORE WE START</p>
+          <h1 id="nameScreenTitle">어떤 캐릭터를 떠올리고 있나요?</h1>
+          <p class="screen-description">이름은 선택 사항이에요. 비워두어도 결과를 자연스럽게 보여드릴게요.</p>
+          <form id="nameForm">
+            <label class="public-field" for="characterName">
+              <span>결과에 표시할 캐릭터 이름</span>
+              <small>입력하지 않아도 테스트할 수 있어요.</small>
+            </label>
+            <input id="characterName" type="text" maxlength="80" placeholder="예: 과묵한 기사단장" autocomplete="off">
+            <p class="privacy-copy" id="privacyNotice">입력한 이름과 답변은 현재 브라우저에서만 처리됩니다.</p>
+            <button class="button button-primary button-large" type="submit">질문 시작하기</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="testScreen" class="screen test-screen" hidden aria-labelledby="questionText">
+        <div class="test-card">
+          <div class="test-topline">
+            <button class="back-link" id="resetDuringTestBtn" type="button">처음부터 다시 하기</button>
+            <span id="progressText">1 / 13</span>
+          </div>
+          <div class="progress-track" aria-label="테스트 진행률"><div id="progressBar"></div></div>
+          <p id="questionCategory" class="category-label"></p>
+          <p id="categoryMessage" class="category-message"></p>
+          <form id="questionForm">
+            <fieldset>
+              <legend id="questionText"></legend>
+              <div id="answerList" class="answer-list"></div>
+            </fieldset>
+          </form>
+          <p id="questionError" class="error-text" role="alert"></p>
+          <div class="question-nav">
+            <button class="button button-secondary" id="previousBtn" type="button">이전</button>
+            <button class="button button-primary" id="nextBtn" type="button">다음</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="resultScreen" class="screen result-screen" hidden aria-live="polite">
+        <div id="sharedResultNotice" class="shared-result-notice" hidden>
+          공유된 결과를 보고 있어요. 이름은 개인정보 보호를 위해 링크에 포함되지 않았습니다.
+          <button id="testFromSharedBtn" class="inline-button" type="button">이 결과로 직접 테스트하기</button>
+        </div>
+
+        <article id="resultHero" class="result-hero decoration-cream">
+          <p class="public-kicker">CHARACTER CLICK TYPE</p>
+          <p id="resultNameLine" class="result-name-line">이 캐릭터의 클릭 타입은</p>
+          <h1 id="resultTypeTitle"></h1>
+          <p id="resultTypeDescription" class="result-type-description"></p>
+          <span class="result-stamp">축BTI by 꾹꾹이 쿠키 클리커</span>
+        </article>
+
+        <div id="filteredResultNotice" class="filtered-result-notice" role="status" hidden></div>
+
+        <section class="result-section" aria-labelledby="characterAnalysisTitle">
+          <p class="public-kicker">CHARACTER STORY</p>
+          <h2 id="characterAnalysisTitle">캐릭터 해석</h2>
+          <p id="characterAnalysis" class="analysis-copy"></p>
+        </section>
+
+        <section class="result-section contrast-section" aria-labelledby="outerInnerTitle">
+          <p class="public-kicker">FIRST LOOK &amp; INNER SIDE</p>
+          <h2 id="outerInnerTitle">첫인상과 관계 안에서 드러나는 모습</h2>
+          <div class="outer-inner-cards">
+            <div><span>처음 보이는 모습</span><p id="outerAnswerText"></p></div>
+            <i aria-hidden="true">→</i>
+            <div><span>평소 사람을 대하는 방식</span><p id="interpersonalAnswerText"></p></div>
+            <i aria-hidden="true">→</i>
+            <div><span>관계 안에서 유지되는 기준</span><p id="innerAnswerText"></p></div>
+          </div>
+          <p id="outerInnerDescription" class="analysis-copy"></p>
+        </section>
+
+        <section class="result-section" aria-labelledby="feelTitle">
+          <p class="public-kicker">CLICK FEEL</p>
+          <h2 id="feelTitle">어울리는 클릭감</h2>
+          <p class="section-lead">숫자 대신 실제로 느껴질 소리와 손끝 감각으로 풀어봤어요.</p>
+          <div id="feelGrid" class="feel-grid"></div>
+        </section>
+
+        <section class="result-section switch-section" aria-labelledby="switchTitle">
+          <p class="public-kicker">MATCHED SWITCH</p>
+          <h2 id="switchTitle">이 감각을 가장 잘 표현하는 스위치</h2>
+          <article id="primarySwitch" class="switch-card"></article>
+          <div class="switch-reason">
+            <h3>이 스위치가 어울리는 이유</h3>
+            <p id="switchReason"></p>
+          </div>
+          <div class="switch-reason contrast-reason">
+            <h3>겉과 속까지 함께 표현하면</h3>
+            <p id="switchContrastReason"></p>
+          </div>
+          <details class="term-details">
+            <summary>스위치 용어가 낯설다면</summary>
+            <dl id="termList"></dl>
+          </details>
+        </section>
+
+        <section class="result-section" aria-labelledby="alternativesTitle">
+          <p class="public-kicker">OTHER DIRECTIONS</p>
+          <h2 id="alternativesTitle">이런 방향도 어울려요</h2>
+          <div id="alternativeResults" class="alternative-grid"></div>
+        </section>
+
+        <section class="result-section share-section" aria-labelledby="shareTitle">
+          <div>
+            <p class="public-kicker">SHARE YOUR TYPE</p>
+            <h2 id="shareTitle">캐릭터 결과를 간직하고 공유해보세요</h2>
+            <p class="section-lead">공유 링크에는 답변만 들어가며 캐릭터 이름은 포함되지 않습니다.</p>
+          </div>
+          <div id="shareCardPreview" class="share-card-preview"></div>
+          <div class="action-grid">
+            <button class="button button-primary" id="saveImageBtn" type="button">결과 이미지 저장하기</button>
+            <button class="button button-secondary" id="shareResultBtn" type="button">친구에게 테스트 보내기</button>
+            <button class="button button-secondary" id="copyLinkBtn" type="button">결과 링크 복사</button>
+            <a class="button button-secondary" id="shareXBtn" href="#" target="_blank" rel="noopener">X에 공유하기</a>
+          </div>
+          <p id="shareStatus" class="status-copy" role="status"></p>
+        </section>
+
+        <section class="result-section product-section" aria-labelledby="productTitle">
+          <div class="product-copy">
+            <p class="public-kicker">FROM TYPE TO COOKIE</p>
+            <h2 id="productTitle">이 클릭감을 실제 쿠키 클리커로 만들어보세요</h2>
+            <p id="productDescription"></p>
+            <ul id="productFeatures" class="feature-list"></ul>
+            <div id="productActions" class="product-actions" hidden></div>
+          </div>
+          <div id="resultProductMedia" class="result-product-placeholder">
+            <span class="cookie-button small" aria-hidden="true"><i></i></span>
+            <p>실제 제품 사진을 추가할 수 있어요.</p>
+          </div>
+        </section>
+
+        <section class="result-section refine-section" aria-labelledby="refineTitle">
+          <p class="public-kicker">PICK YOUR SWITCH RANGE</p>
+          <h2 id="refineTitle">원하는 축 안에서 다시 골라볼까요?</h2>
+          <p class="section-lead">답변과 매칭 점수는 그대로 유지하고, 선택한 보유축 안에서만 순위를 다시 계산합니다.</p>
+          <form id="refineForm">
+            <fieldset class="refine-fieldset">
+              <legend>스위치 타입</legend>
+              <div class="refine-options">
+                <label class="filter-check"><input type="checkbox" name="publicSwitchType" value="클릭키" checked><span>클릭키</span></label>
+                <label class="filter-check"><input type="checkbox" name="publicSwitchType" value="택타일" checked><span>택타일</span></label>
+                <label class="filter-check"><input type="checkbox" name="publicSwitchType" value="리니어" checked><span>리니어</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="refine-fieldset">
+              <legend>소음 설계</legend>
+              <div class="refine-options">
+                <label class="filter-check"><input type="checkbox" name="publicSilent" value="아니오" checked><span>일반 소음</span></label>
+                <label class="filter-check"><input type="checkbox" name="publicSilent" value="예" checked><span>저소음</span></label>
+              </div>
+            </fieldset>
+            <p id="refineCandidateCount" class="refine-count" aria-live="polite">현재 조건에 맞는 축 37개</p>
+            <p id="refineError" class="error-text" role="alert"></p>
+            <div class="refine-actions">
+              <button class="button button-primary" id="refineResultBtn" type="submit">선택한 축 안에서 다시 추천받기</button>
+              <button class="button button-secondary" id="resetRefineBtn" type="button">전체 축으로 되돌리기</button>
+              <a class="button button-secondary" href="./switches.html">보유 스위치 모두 보기</a>
+            </div>
+          </form>
+        </section>
+
+        <aside class="result-disclaimer" aria-label="결과 범위와 해석 안내">
+          <strong>결과를 재미로 즐겨주세요</strong>
+          <p id="resultDisclaimer"></p>
+        </aside>
+        <div class="repeat-actions">
+          <button class="button button-primary" id="retestBtn" type="button">다른 캐릭터도 테스트하기</button>
+          <button class="button button-secondary" id="restartResultBtn" type="button">처음부터 다시 하기</button>
+        </div>
+      </section>
+
+      <section id="adminTools" class="admin-tools" hidden aria-label="내부 운영 도구">
+        <div class="admin-tools-heading">
+          <div><p class="public-kicker">INTERNAL ONLY</p><h2>운영자 점수 확인</h2></div>
+          <div id="adminToolsLinkContainer"></div>
+        </div>
+        <div id="profileMetrics" class="admin-metrics"></div>
+        <div class="admin-filter-grid">
+          <label>스위치 타입<select id="switchTypeFilter"><option value="">제한 없음</option><option value="리니어">리니어</option><option value="택타일">택타일</option><option value="클릭키">클릭키</option></select></label>
+          <label>저소음<select id="silentFilter"><option value="">제한 없음</option><option value="예">저소음만</option><option value="아니오">일반 소음만</option></select></label>
+        </div>
+        <details><summary>추천에서 제외할 스위치</summary><input id="excludeSearch" type="search" placeholder="스위치 이름 검색"><div id="excludeList" class="exclude-list"></div></details>
+      </section>
+
+      <section id="debugPanel" class="debug-panel" hidden aria-label="내부 점수 디버그">
+        <h2>내부 점수 계산 상세</h2>
+        <div id="debugContent"></div>
+      </section>
+    </main>
+
+    <footer class="public-footer">
+      <strong id="footerBrand">축BTI by 꾹꾹이 쿠키 클리커</strong>
+      <p>캐릭터의 이야기를 소리와 손끝 감각으로 옮깁니다.</p>
+      <a href="./switches.html">리리베이커리 보유 스위치 모두 보기</a>
+      <a id="socialLink" href="#" target="_blank" rel="noopener" hidden>브랜드 SNS 보기</a>
+    </footer>
+  </div>
+  <script type="module" src="./src/app.js?v=20260806a"></script>
+</body>
+</html>

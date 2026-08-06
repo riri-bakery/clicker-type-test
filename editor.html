@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>축BTI · 질문 설정 편집기</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css?v=20260805h">
+</head>
+<body>
+  <div class="app editor-app">
+    <header class="site-header">
+      <div>
+        <p class="eyebrow">QUESTION CONFIGURATION</p>
+        <h1>질문 설정 편집기</h1>
+        <p class="subtitle">질문 문구·순서·범위·답변별 8축 점수를 한곳에서 관리합니다.</p>
+      </div>
+      <nav class="header-actions" aria-label="내부 도구">
+        <a class="btn btn-ghost" href="./index.html">공개 화면 미리보기</a>
+        <a class="btn btn-secondary" href="./index.html?admin=1&amp;debug=1">점수 디버그 테스트</a>
+      </nav>
+    </header>
+
+    <section class="panel editor-toolbar">
+      <div>
+        <strong id="editorStatus">기본 설정을 불러왔습니다.</strong>
+        <p class="mini">빈 점수 칸은 해당 축을 계산에서 제외합니다. 저장 전 전체 설정을 검증합니다.</p>
+      </div>
+      <div class="toolbar-actions">
+        <button class="btn btn-primary" id="saveConfigBtn" type="button">브라우저에 저장</button>
+        <button class="btn btn-secondary" id="testConfigBtn" type="button">현재 설정으로 테스트</button>
+        <button class="btn btn-ghost" id="exportConfigBtn" type="button">JSON 내보내기</button>
+        <label class="btn btn-ghost file-button">JSON 불러오기<input id="importConfigInput" type="file" accept="application/json,.json"></label>
+        <button class="btn btn-danger" id="resetConfigBtn" type="button">기본값으로 초기화</button>
+      </div>
+      <div id="editorErrors" class="editor-errors" role="alert"></div>
+    </section>
+
+    <section class="panel data-audit" aria-labelledby="switchAuditTitle">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">SWITCH DATA AUDIT</p>
+          <h2 id="switchAuditTitle">스위치 데이터 현황</h2>
+        </div>
+        <strong id="switchAuditSummary"></strong>
+      </div>
+      <p class="mini">원본 물리 데이터와 결측 필드를 확인합니다. 이 화면은 운영용이며 공개 메인에서는 연결하지 않습니다.</p>
+      <div class="table-scroll"><table class="debug-table">
+        <thead><tr><th>#</th><th>스위치</th><th>타입</th><th>저소음</th><th>완성도</th><th>누락·보조값</th></tr></thead>
+        <tbody id="switchAuditRows"></tbody>
+      </table></div>
+    </section>
+
+    <main id="questionEditor" class="question-editor"></main>
+  </div>
+  <script type="module" src="./src/editor.js?v=20260806a"></script>
+</body>
+</html>
