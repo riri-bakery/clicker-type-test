@@ -1,3 +1,4 @@
+import { brandSignature } from "./displayLabels.js";
 const utf8ToBase64Url = value => {
   const bytes = new TextEncoder().encode(value);
   let binary = "";
@@ -252,7 +253,7 @@ export async function createResultCardBlob(data) {
   drawRule(1790);
   ctx.fillStyle = "#79503a";
   ctx.font = `700 22px ${font}`;
-  ctx.fillText(data.legacyName + " by " + data.brandName, left, 1825);
+  ctx.fillText(brandSignature(data.legacyName, data.brandName), left, 1825);
   ctx.textAlign = "right";
   ctx.font = `500 19px ${font}`;
   ctx.fillText(data.pageLabel, left + contentWidth, 1825);

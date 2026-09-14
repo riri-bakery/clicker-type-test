@@ -66,7 +66,7 @@ export function contrastSimilarity(characterOuter, characterInner, switchOuter, 
     score,
     neutral,
     reason: neutral
-      ? "강한 겉·속 대비가 없어 기본 키감만 반영함"
+      ? "강한 대비가 없어 기본 키감만 반영함"
       : "첫인상은 소리 특성에, 숨은 면은 실제 눌림 특성에 각각 비교함",
     outer,
     inner
@@ -159,7 +159,7 @@ export function axisPhrase(axis, value) {
   const high = value >= 67;
   const low = value <= 33;
   const phrases = {
-    quiet: high ? "조용한 소리" : low ? "크게 드러나는 소리" : "절제된 소리",
+    quiet: high ? "조용한 소리" : low ? "큰 소리" : "절제된 소리",
     weight: high ? "묵직한 바닥 무게" : low ? "가벼운 눌림" : "균형 잡힌 무게",
     speed: high ? "빠르고 즉각적인 반응" : low ? "느리고 안정적인 반응" : "고른 반응 속도",
     tactile: high ? "분명한 걸림" : low ? "걸림이 적은 눌림" : "적당한 촉각 구분감",
@@ -176,9 +176,9 @@ export function explainRecommendation(result) {
     .map(item => axisPhrase(item.axis, result.switch.profile[item.axis]))
     .join(", ");
   const contrastText = result.contrast.neutral
-    ? "겉과 속의 대비는 크지 않아 기본 키감 일치도를 중심으로 선정했습니다."
+    ? "겉과 속의 대비가 크지 않아 기본 키감 일치도를 중심으로 선정했습니다."
     : result.contrast.score >= 65
-      ? "겉으로 드러나는 인상과 실제 눌림의 변화 방향도 캐릭터의 겉·속 변화와 비슷합니다."
+      ? "겉으로 드러나는 인상과 실제 눌림의 변화 방향도 캐릭터의 겉과 속의 차이와 비슷합니다."
       : "기본 키감은 잘 맞지만 겉과 속의 변화 방향은 일부 다릅니다.";
   return physicalReasons + "이 캐릭터의 핵심 성향과 잘 맞습니다. " + contrastText;
 }
@@ -189,7 +189,7 @@ export function compareAlternative(primary, alternative) {
     .map(axis => ({ axis, delta: alternative.switch.profile[axis] - primary.switch.profile[axis] }))
     .sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
   const main = differences[0];
-  if (!main) return "1위와 비교할 수 있는 공통 물리 데이터가 부족합니다.";
+  if (!main) return "1위와 비교할 수 있는 데이터가 부족합니다.";
   const direction = main.delta >= 0 ? "더 높은" : "더 낮은";
   return "1위보다 " + AXIS_LABELS[main.axis] + "이 " + direction + " 대안입니다.";
 }

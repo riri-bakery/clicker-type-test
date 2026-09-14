@@ -1,8 +1,9 @@
+import { switchTypeLabel, brandSignature } from "./displayLabels.js";
 import { AXES } from "./data/questions.js";
 import { SWITCHES } from "./data/switches.js?v=20260806a";
 import { analyze, buildCharacterProfile, axisPhrase } from "./scoring/engine.js?v=20260806a";
 import { loadQuestions, loadProgress, saveProgress, clearProgress } from "./configStore.js";
-import { brandConfig, categoryMessages, termHelp } from "./publicConfig.js?v=20260806a";
+import { brandConfig, termHelp } from "./publicConfig.js?v=20260806a";
 import { trackEvent } from "./analytics.js";
 import {
   alternativeLabel, buildProductLinks, createResultSnapshot, describeCharacter, describeFeel,
@@ -15,7 +16,7 @@ import {
 const dom = Object.fromEntries([
   "configNotice", "introScreen", "nameScreen", "testScreen", "resultScreen", "startTestBtn",
   "backToIntroBtn", "nameForm", "characterName", "privacyNotice", "resetDuringTestBtn",
-  "progressText", "progressBar", "questionCategory", "categoryMessage", "questionForm",
+  "progressText", "progressBar", "questionForm",
   "questionText", "answerList", "questionError", "previousBtn", "nextBtn", "sharedResultNotice",
   "testFromSharedBtn", "resultHero", "resultNameLine", "resultTypeTitle", "resultTypeDescription",
   "characterAnalysis", "outerAnswerText", "interpersonalAnswerText", "innerAnswerText", "outerInnerDescription", "feelGrid",
@@ -25,7 +26,7 @@ const dom = Object.fromEntries([
   "retestBtn", "restartResultBtn", "adminTools", "profileMetrics", "switchTypeFilter",
   "silentFilter", "excludeSearch", "excludeList", "debugPanel", "debugContent", "productMedia",
   "mediaPlaceholder", "resultProductMedia", "serviceName", "introTitle", "introDescription",
-  "brandNote", "headerServiceName", "headerLegacyName", "headerBrandName", "footerBrand", "socialLink",
+  "brandNote", "headerServiceName", "headerBrandName", "footerBrand", "socialLink",
   "adminToolsLinkContainer", "headerTestDetail", "introQuestionCount", "introTimeEstimate", "introSwitchCount",
   "filteredResultNotice", "refineForm", "refineCandidateCount", "refineError", "refineResultBtn", "resetRefineBtn"
 ].map(id => [id, document.getElementById(id)]));
@@ -100,9 +101,8 @@ function applyBrandConfig() {
     brandNote: brandConfig.brandNote,
     privacyNotice: brandConfig.privacyNotice,
     headerServiceName: brandConfig.serviceName,
-    headerLegacyName: brandConfig.legacyName,
     headerBrandName: brandConfig.brandName,
-    footerBrand: brandConfig.legacyName + " by " + brandConfig.brandName,
+    footerBrand: brandSignature(brandConfig.legacyName, brandConfig.brandName),
     productTitle: brandConfig.productTitle,
     productDescription: brandConfig.productDescription,
     resultDisclaimer: brandConfig.resultDisclaimer
@@ -285,8 +285,6 @@ function bindKeyboardActivation(element, action) {
 function renderQuestion() {
   const question = activeQuestions[state.currentIndex];
   if (!question) return;
-  dom.questionCategory.textContent = question.category;
-  dom.categoryMessage.textContent = categoryMessages[question.category] || "캐릭터의 결을 조금 더 자세히 살펴보고 있어요.";
   dom.questionText.textContent = question.question;
   dom.answerList.innerHTML = question.answers.map(answer => {
     const id = "answer-" + question.id + "-" + answer.id;
@@ -412,7 +410,7 @@ function renderResults({ trackCompletion = false, scroll = true } = {}) {
   dom.switchReason.textContent = primaryReason;
   dom.switchContrastReason.textContent = describeSwitchContrast(top[0], characterContrast);
   dom.termList.innerHTML = Object.entries(termHelp).map(([term, explanation]) =>
-    "<dt>" + escapeHtml(term) + "</dt><dd>" + escapeHtml(explanation) + "</dd>"
+    "<dt>" + escapeHtml(switchTypeLabel(term)) + "</dt><dd>" + escapeHtml(explanation) + "</dd>"
   ).join("");
   dom.alternativeResults.innerHTML = top.slice(1).map(item => alternativeMarkup(top[0], item)).join("");
   renderSharePreview(displayName, lastPresentation);
@@ -434,7 +432,7 @@ function primarySwitchMarkup(result) {
   const sw = result.switch;
   return '<div class="switch-card-head"><div><p class="public-kicker">BEST MATCH</p><h3>' +
     escapeHtml(sw.fullName) + '</h3><p class="switch-brand">' + escapeHtml(sw.brand) +
-    ' · ' + escapeHtml(sw.switchType) + '</p></div><div class="match-score">' + formatScore(result.finalScore) + "점" +
+    ' · ' + escapeHtml(switchTypeLabel(sw.switchType)) + '</p></div><div class="match-score">' + formatScore(result.finalScore) + "점" +
     '<small>캐릭터 매칭</small></div></div><div class="switch-specs">' +
     switchSpec("소음 설계", sw.silent === "예" ? "저소음" : "일반 소음") +
     switchSpec("작동압", formatForce(sw.actuationForce)) + switchSpec("바닥압", formatForce(sw.bottomOutForce)) +
@@ -464,7 +462,7 @@ function alternativeMarkup(primary, result) {
   const sw = result.switch;
   return '<article class="alternative-card"><span class="alternative-label">' +
     escapeHtml(alternativeLabel(primary, result)) + "</span><h3>" + escapeHtml(sw.fullName) +
-    '</h3><div class="alternative-meta">' + escapeHtml(sw.brand) + " · " + escapeHtml(sw.switchType) +
+    '</h3><div class="alternative-meta">' + escapeHtml(sw.brand) + " · " + escapeHtml(switchTypeLabel(sw.switchType)) +
     " · 매칭 " + formatScore(result.finalScore) + "</div><p>" + escapeHtml(publicSwitchReason(result)) + "</p></article>";
 }
 
@@ -481,7 +479,7 @@ function renderSharePreview(name, presentation) {
     '</p></div><div class="share-preview-bonus"><span>다른 방향 보너스</span>' +
     alternatives.map(item => '<p><b>' + escapeHtml(alternativeLabel(primary, item)) + '</b> · ' +
       escapeHtml(item.switch.fullName) + '</p>').join("") + '</div><span class="share-preview-brand">' +
-    escapeHtml(brandConfig.legacyName + " by " + brandConfig.brandName) + "</span>";
+    escapeHtml(brandSignature(brandConfig.legacyName, brandConfig.brandName)) + "</span>";
 }
 
 function configureShareLinks(clickType) {
@@ -547,12 +545,12 @@ async function saveImage() {
       characterAnalysis: lastPresentation.characterStory,
       feelRows: lastPresentation.feelRows,
       switchName: lastPresentation.primary.switch.fullName,
-      switchMeta: lastPresentation.primary.switch.brand + " · " + lastPresentation.primary.switch.switchType,
+      switchMeta: lastPresentation.primary.switch.brand + " · " + switchTypeLabel(lastPresentation.primary.switch.switchType),
       switchReason: lastPresentation.primaryReason,
       alternatives: lastPresentation.alternatives.map(item => ({
         label: alternativeLabel(lastPresentation.primary, item),
         name: item.switch.fullName,
-        meta: item.switch.brand + " · " + item.switch.switchType
+        meta: item.switch.brand + " · " + switchTypeLabel(item.switch.switchType)
       })),
       decoration: resultDecoration(lastAnalysis.character.overallProfile),
       pageLabel: location.hostname || brandConfig.serviceName
@@ -636,7 +634,7 @@ function renderFilteredResultNotice(candidateCount) {
   const isAll = filters.switchTypes.length === 3 && filters.silentValues.length === 2;
   dom.filteredResultNotice.hidden = isAll;
   if (isAll) return;
-  const typeText = filters.switchTypes.join(" · ");
+  const typeText = filters.switchTypes.map(switchTypeLabel).join(" · ");
   const noiseText = filters.silentValues.map(value => value === "예" ? "저소음" : "일반 소음").join(" · ");
   dom.filteredResultNotice.textContent = "선택 조건으로 다시 추천한 결과 · " + typeText + " / " + noiseText + " · " + candidateCount + "개 후보";
 }

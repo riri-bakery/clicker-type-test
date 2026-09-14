@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f4e7cf">
-  <meta name="description" content="내 캐릭터는 어떤 클릭 타입일까? 캐릭터의 성격과 분위기를 바탕으로 어울리는 소리와 촉감을 찾아보세요." data-config-meta="description">
+  <meta name="description" content="내 캐릭터는 어떤 스위치가 어울릴까? 캐릭터의 성격과 분위기를 바탕으로 어울리는 소리와 촉감을 찾아보세요." data-config-meta="description">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="내 캐릭터는 어떤 클릭 타입일까?" data-config-meta="og:title">
-  <meta property="og:description" content="캐릭터의 성격과 분위기를 바탕으로 어울리는 소리와 촉감을 찾아보세요." data-config-meta="og:description">
+  <meta property="og:title" content="내 캐릭터는 어떤 스위치가 어울릴까?" data-config-meta="og:title">
+  <meta property="og:description" content="캐릭터의 설정을 바탕으로 어울리는 소리와 키감을 찾아보세요." data-config-meta="og:description">
   <meta name="twitter:card" content="summary" data-config-meta="twitter:card">
-  <meta name="twitter:title" content="내 캐릭터는 어떤 클릭 타입일까?" data-config-meta="twitter:title">
-  <meta name="twitter:description" content="캐릭터의 성격과 분위기를 바탕으로 어울리는 소리와 촉감을 찾아보세요." data-config-meta="twitter:description">
-  <title data-config-title>캐릭터 클릭 타입 테스트 · 축BTI by 꾹꾹이 쿠키 클리커</title>
+  <meta name="twitter:title" content="내 캐릭터는 어떤 스위치가 어울릴까?" data-config-meta="twitter:title">
+  <meta name="twitter:description" content="캐릭터의 설정을 바탕으로 어울리는 소리와 키감을 찾아보세요." data-config-meta="twitter:description">
+  <title data-config-title>캐릭터 클릭 타입 테스트 by 꾹꾹이 쿠키 클리커</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./public.css?v=20260805i">
 </head>
@@ -20,7 +20,7 @@
     <header class="public-header">
       <a class="brand-lockup" href="./index.html" aria-label="테스트 첫 화면으로">
         <span id="headerServiceName">캐릭터 클릭 타입 테스트</span>
-        <small><span id="headerLegacyName">축BTI</span> by <span id="headerBrandName">꾹꾹이 쿠키 클리커</span></small>
+        <small>by <span id="headerBrandName">꾹꾹이 쿠키 클리커</span></small>
       </a>
       <nav class="header-nav" aria-label="주요 메뉴">
         <a href="./switches.html">보유 스위치 37개</a>
@@ -38,9 +38,9 @@
           <p class="hero-question">차분하게 눌리는 타입일까,<br>통통 튀는 타입일까?</p>
           <p id="introDescription" class="hero-description">캐릭터의 성격과 분위기를 바탕으로 어울리는 소리와 손끝 감각을 찾아보세요.</p>
           <aside class="scope-notice" aria-label="테스트 범위와 해석 안내">
-            <strong>리리베이커리 보유 스위치 안에서 추천해요</strong>
-            <p>세상의 모든 스위치가 아니라, 리리베이커리가 현재 보유한 <b id="introSwitchCount">37개 스위치</b> 중에서 결과가 나옵니다.</p>
-            <p>스위치 속성과 캐릭터 해석의 연결은 리리베이커리의 주관적인 판단이므로 재미로 즐겨주세요.</p>
+            <strong>리리 베이커리 보유 스위치 안에서 추천해요</strong>
+            <p>세상의 모든 스위치가 아니라, 리리 베이커리가 현재 보유한 <b id="introSwitchCount">37개 스위치</b> 중에서 결과가 나옵니다.</p>
+            <p>스위치 속성과 캐릭터 해석의 연결은 리리 베이커리의 주관적인 판단이므로 재미로 즐겨주세요.</p>
           </aside>
           <ul class="test-facts" aria-label="테스트 정보">
             <li><b id="introQuestionCount">13문항</b><span>부담 없이</span></li>
@@ -85,8 +85,6 @@
             <span id="progressText">1 / 13</span>
           </div>
           <div class="progress-track" aria-label="테스트 진행률"><div id="progressBar"></div></div>
-          <p id="questionCategory" class="category-label"></p>
-          <p id="categoryMessage" class="category-message"></p>
           <form id="questionForm">
             <fieldset>
               <legend id="questionText"></legend>
@@ -112,7 +110,7 @@
           <p id="resultNameLine" class="result-name-line">이 캐릭터의 클릭 타입은</p>
           <h1 id="resultTypeTitle"></h1>
           <p id="resultTypeDescription" class="result-type-description"></p>
-          <span class="result-stamp">축BTI by 꾹꾹이 쿠키 클리커</span>
+          <span class="result-stamp">by 꾹꾹이 쿠키 클리커</span>
         </article>
 
         <div id="filteredResultNotice" class="filtered-result-notice" role="status" hidden></div>
@@ -205,7 +203,7 @@
             <fieldset class="refine-fieldset">
               <legend>스위치 타입</legend>
               <div class="refine-options">
-                <label class="filter-check"><input type="checkbox" name="publicSwitchType" value="클릭키" checked><span>클릭키</span></label>
+                <label class="filter-check"><input type="checkbox" name="publicSwitchType" value="클릭키" checked><span>클릭</span></label>
                 <label class="filter-check"><input type="checkbox" name="publicSwitchType" value="택타일" checked><span>택타일</span></label>
                 <label class="filter-check"><input type="checkbox" name="publicSwitchType" value="리니어" checked><span>리니어</span></label>
               </div>
@@ -244,7 +242,7 @@
         </div>
         <div id="profileMetrics" class="admin-metrics"></div>
         <div class="admin-filter-grid">
-          <label>스위치 타입<select id="switchTypeFilter"><option value="">제한 없음</option><option value="리니어">리니어</option><option value="택타일">택타일</option><option value="클릭키">클릭키</option></select></label>
+          <label>스위치 타입<select id="switchTypeFilter"><option value="">제한 없음</option><option value="리니어">리니어</option><option value="택타일">택타일</option><option value="클릭키">클릭</option></select></label>
           <label>저소음<select id="silentFilter"><option value="">제한 없음</option><option value="예">저소음만</option><option value="아니오">일반 소음만</option></select></label>
         </div>
         <details><summary>추천에서 제외할 스위치</summary><input id="excludeSearch" type="search" placeholder="스위치 이름 검색"><div id="excludeList" class="exclude-list"></div></details>
@@ -257,9 +255,9 @@
     </main>
 
     <footer class="public-footer">
-      <strong id="footerBrand">축BTI by 꾹꾹이 쿠키 클리커</strong>
+      <strong id="footerBrand">by 꾹꾹이 쿠키 클리커</strong>
       <p>캐릭터의 이야기를 소리와 손끝 감각으로 옮깁니다.</p>
-      <a href="./switches.html">리리베이커리 보유 스위치 모두 보기</a>
+      <a href="./switches.html">리리 베이커리 보유 스위치 모두 보기</a>
       <a id="socialLink" href="#" target="_blank" rel="noopener" hidden>브랜드 SNS 보기</a>
     </footer>
   </div>

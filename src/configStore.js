@@ -1,4 +1,5 @@
 import { AXES, cloneDefaultQuestions } from "./data/questions.js";
+import { QUESTION_COPY_MIGRATIONS } from "./data/questionCopyMigrations.js";
 
 export const STORAGE_KEYS = Object.freeze({
   questions: "chukbti.questions.v2",
@@ -41,6 +42,13 @@ export function migrateQuestionConfig(questions) {
   let changed = required.addedIds.length > 0;
   let scoreUpdates = 0;
   migrated.forEach(question => {
+    for (const field of ["category", "question"]) {
+      const copy = QUESTION_COPY_MIGRATIONS[question.id + "." + field];
+      if (copy && question[field] === copy[0]) {
+        question[field] = copy[1];
+        changed = true;
+      }
+    }
     const defaultQuestion = defaults.get(question.id);
     if (defaultQuestion?.axisWeights) {
       const current = question.axisWeights && typeof question.axisWeights === "object" ? question.axisWeights : {};
@@ -49,6 +57,11 @@ export function migrateQuestionConfig(questions) {
       question.axisWeights = mergedWeights;
     }
     question.answers?.forEach(answer => {
+      const copy = QUESTION_COPY_MIGRATIONS[question.id + "." + answer.id];
+      if (copy && answer.text === copy[0]) {
+        answer.text = copy[1];
+        changed = true;
+      }
       Object.keys(answer.scores || {}).forEach(axis => {
         const migration = SCORE_MIGRATIONS[question.id + "." + answer.id + "." + axis];
         if (migration && answer.scores[axis] === migration[0]) {

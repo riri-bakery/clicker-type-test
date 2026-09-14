@@ -52,7 +52,7 @@ export function getClickType(profile, outerProfile = {}, innerProfile = {}) {
   return {
     id: "fallback-" + first.axis + "-" + firstSide + "-" + second.axis + "-" + secondSide.toLowerCase(),
     title,
-    description: "가장 선명하게 드러난 두 가지 감각을 함께 담은 캐릭터 타입",
+    description: "이 캐릭터는 한 문장으로",
     fallback: true
   };
 }
@@ -132,8 +132,8 @@ function innerImpression(profile) {
   if (profile.weight <= 30 && profile.clarity <= 35) return "가까워진 뒤에는 쉽게 마음이 흔들리는 여린 면이 보입니다.";
   const core = strongestTraits(profile)[0];
   return core
-    ? "가까워진 뒤에는 " + CHARACTER_SENTENCES[core.axis][core.value >= 50 ? "high" : "low"].replace(/^(감정을|쉽게|판단과|부드러워|관계 안에서는|감정보다|말과 행동의|한 번에|말과 행동에는|쉽게|등장만으로|앞에 나서지 않아도)/, "자기만의")
-    : "가까워진 뒤에는 자기만의 기준과 감정이 조금 더 분명하게 보입니다.";
+    ? "가까워진 뒤에는 " + CHARACTER_SENTENCES[core.axis][core.value >= 50 ? "high" : "low"].replace(/^(감정을|쉽게|판단과|부드러워|관계 안에서는|감정보다|말과 행동의|한 번에|말과 행동에는|쉽게|등장만으로|앞에 나서지 않아도)/, "자신만의")
+    : "가까워진 뒤에는 자신만의 기준과 감정이 조금 더 확실하게 보입니다.";
 }
 
 function contrastBridge(changes) {

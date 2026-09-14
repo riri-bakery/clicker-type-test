@@ -2,7 +2,7 @@
 // 점수 계산은 물리 필드만 사용하며, 분위기·태그·제품명은 결과 설명 전용입니다.
 export const SWITCHES = [
   {
-    "brand": "왓키",
+    "brand": "카일",
     "productName": "저소음 크림축 45g",
     "fullName": "카일 저소음 크림 축",
     "switchType": "리니어",

@@ -192,7 +192,7 @@ test("공개 HTML은 관리자 편집기 링크를 직접 노출하지 않는다
   assert.match(html, /id="adminTools"[^>]+hidden/);
   assert.match(html, /캐릭터 분석 시작하기/);
   assert.match(html, /13문항/);
-  assert.match(html, /리리베이커리가 현재 보유한/);
+  assert.match(html, /리리 베이커리가 현재 보유한/);
   assert.match(html, /id="refineForm"/);
   assert.match(html, /보유 스위치 모두 보기/);
 });
