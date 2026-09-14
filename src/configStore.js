@@ -44,7 +44,7 @@ export function migrateQuestionConfig(questions) {
   migrated.forEach(question => {
     for (const field of ["category", "question"]) {
       const copy = QUESTION_COPY_MIGRATIONS[question.id + "." + field];
-      if (copy && question[field] === copy[0]) {
+      if (copy && (question[field] === copy[0] || copy.slice(2).includes(question[field]))) {
         question[field] = copy[1];
         changed = true;
       }

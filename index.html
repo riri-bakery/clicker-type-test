@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f4e7cf">
+  <meta name="theme-color" content="#b7dce9">
   <meta name="description" content="내 캐릭터는 어떤 스위치가 어울릴까? 캐릭터의 성격과 분위기를 바탕으로 어울리는 소리와 촉감을 찾아보세요." data-config-meta="description">
   <meta property="og:type" content="website">
   <meta property="og:title" content="내 캐릭터는 어떤 스위치가 어울릴까?" data-config-meta="og:title">
@@ -13,7 +13,7 @@
   <meta name="twitter:description" content="캐릭터의 설정을 바탕으로 어울리는 소리와 키감을 찾아보세요." data-config-meta="twitter:description">
   <title data-config-title>캐릭터 클릭 타입 테스트 by 꾹꾹이 쿠키 클리커</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="./public.css?v=20260805i">
+  <link rel="stylesheet" href="./public.css?v=20260914pixel">
 </head>
 <body>
   <div class="public-app">
@@ -32,30 +32,30 @@
 
     <main>
       <section id="introScreen" class="screen hero-screen" aria-labelledby="introTitle">
+        <div class="window-bar" aria-hidden="true"><span>riri / click-type</span><span>_ □ ×</span></div>
         <div class="hero-copy">
           <p class="public-kicker" id="serviceName">캐릭터 클릭 타입 테스트</p>
           <h1 id="introTitle">내 캐릭터는 어떤 클릭 타입일까?</h1>
           <p class="hero-question">차분하게 눌리는 타입일까,<br>통통 튀는 타입일까?</p>
           <p id="introDescription" class="hero-description">캐릭터의 성격과 분위기를 바탕으로 어울리는 소리와 손끝 감각을 찾아보세요.</p>
-          <aside class="scope-notice" aria-label="테스트 범위와 해석 안내">
-            <strong>리리 베이커리 보유 스위치 안에서 추천해요</strong>
-            <p>세상의 모든 스위치가 아니라, 리리 베이커리가 현재 보유한 <b id="introSwitchCount">37개 스위치</b> 중에서 결과가 나옵니다.</p>
-            <p>스위치 속성과 캐릭터 해석의 연결은 리리 베이커리의 주관적인 판단이므로 재미로 즐겨주세요.</p>
-          </aside>
           <ul class="test-facts" aria-label="테스트 정보">
-            <li><b id="introQuestionCount">13문항</b><span>부담 없이</span></li>
-            <li><b id="introTimeEstimate">약 3분</b><span>금방 완성</span></li>
-            <li><b>지식 불필요</b><span>키보드를 몰라도</span></li>
-            <li><b>정답 없음</b><span>캐릭터답게</span></li>
+            <li><b id="introQuestionCount">13문항</b></li>
+            <li><b id="introTimeEstimate">약 3분</b></li>
           </ul>
           <button class="button button-primary button-large" id="startTestBtn" type="button">캐릭터 분석 시작하기</button>
           <p class="brand-note" id="brandNote">꾹꾹이 쿠키 클리커의 실제 캐릭터 스위치 매칭 방식을 바탕으로 만든 테스트입니다.</p>
+          <aside class="scope-notice" aria-label="테스트 범위와 해석 안내">
+            <strong>리리 베이커리 보유 스위치 안에서 추천해요</strong>
+            <p>리리 베이커리가 보유한 <b id="introSwitchCount">37개 스위치</b> 중에서 결과가 나옵니다.</p>
+            <p>스위치 속성과 캐릭터 해석의 연결은 리리 베이커리의 주관적인 판단이므로 재미로 즐겨주세요.</p>
+          </aside>
         </div>
         <div class="hero-visual" id="productMedia" aria-label="제품 이미지 영역">
           <div class="media-placeholder" id="mediaPlaceholder">
-            <span class="cookie-button" aria-hidden="true"><i></i></span>
+            <div class="preview-title" aria-hidden="true"><span>MY CHARACTER</span><span>♡</span></div>
+            <img class="pixel-cookie" src="./public/assets/click-cookie.svg" alt="분홍색 키캡이 들어간 픽셀 쿠키">
             <p>캐릭터의 성격을<br>소리와 촉감으로 바꾸는 중</p>
-            <small>실제 제품 이미지로 교체할 수 있는 영역입니다.</small>
+            <div class="keycap-row" aria-hidden="true"><span>C</span><span>L</span><span>I</span><span>C</span><span>K</span><span>↵</span></div>
           </div>
         </div>
       </section>
@@ -71,7 +71,7 @@
               <span>결과에 표시할 캐릭터 이름</span>
               <small>입력하지 않아도 테스트할 수 있어요.</small>
             </label>
-            <input id="characterName" type="text" maxlength="80" placeholder="예: 과묵한 기사단장" autocomplete="off">
+            <input id="characterName" type="text" maxlength="80" autocomplete="off">
             <p class="privacy-copy" id="privacyNotice">입력한 이름과 답변은 현재 브라우저에서만 처리됩니다.</p>
             <button class="button button-primary button-large" type="submit">질문 시작하기</button>
           </form>
@@ -191,7 +191,6 @@
           </div>
           <div id="resultProductMedia" class="result-product-placeholder">
             <span class="cookie-button small" aria-hidden="true"><i></i></span>
-            <p>실제 제품 사진을 추가할 수 있어요.</p>
           </div>
         </section>
 

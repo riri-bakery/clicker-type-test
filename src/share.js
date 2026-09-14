@@ -134,10 +134,10 @@ function wrapLines(ctx, text, maxWidth, maxLines = 4) {
 
 function drawDecoration(ctx, style) {
   const colors = {
-    cream: ["#e9b965", "#f6ddad"], warm: ["#d58a45", "#f1be70"],
+    cream: ["#78b8cf", "#f3b7c8"], warm: ["#d97796", "#ffe39a"],
     cold: ["#8eb7bd", "#d8eeee"], crystal: ["#6b989a", "#d8ece4"],
-    heavy: ["#6c4030", "#c28b63"], bright: ["#c65d58", "#edb860"]
-  }[style] || ["#e9b965", "#f6ddad"];
+    heavy: ["#385d71", "#91a9b5"], bright: ["#d97796", "#c9eadc"]
+  }[style] || ["#78b8cf", "#f3b7c8"];
   ctx.save();
   ctx.globalAlpha = 0.8;
   for (let index = 0; index < 24; index += 1) {
@@ -152,7 +152,7 @@ function drawDecoration(ctx, style) {
       ctx.translate(-x, -y);
     } else {
       ctx.beginPath();
-      ctx.arc(x, y, style === "heavy" ? 8 : 5, 0, Math.PI * 2);
+      ctx.rect(x, y, style === "heavy" ? 12 : 8, style === "heavy" ? 12 : 8);
       ctx.fill();
     }
   }
@@ -165,10 +165,10 @@ export async function createResultCardBlob(data) {
   canvas.width = 1080;
   canvas.height = 1920;
   const ctx = canvas.getContext("2d");
-  const font = '"Apple SD Gothic Neo", "Noto Sans KR", sans-serif';
+  const font = '"Gmarket Sans", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif';
   const left = 135;
   const contentWidth = 810;
-  const drawLines = (text, x, y, { size = 27, weight = 600, color = "#3f291f", width = contentWidth, maxLines = 4, lineHeight = Math.round(size * 1.45) } = {}) => {
+  const drawLines = (text, x, y, { size = 27, weight = 600, color = "#29343d", width = contentWidth, maxLines = 4, lineHeight = Math.round(size * 1.45) } = {}) => {
     ctx.fillStyle = color;
     ctx.font = `${weight} ${size}px ${font}`;
     const lines = wrapLines(ctx, text || "", width, maxLines);
@@ -176,12 +176,12 @@ export async function createResultCardBlob(data) {
     return y + Math.max(1, lines.length) * lineHeight;
   };
   const drawLabel = (text, x, y) => {
-    ctx.fillStyle = "#9b5f37";
+    ctx.fillStyle = "#385d71";
     ctx.font = `800 22px ${font}`;
     ctx.fillText(text, x, y);
   };
   const drawRule = y => {
-    ctx.strokeStyle = "#e2c79b";
+    ctx.strokeStyle = "#91c7d9";
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(left, y);
@@ -189,25 +189,33 @@ export async function createResultCardBlob(data) {
     ctx.stroke();
   };
 
-  ctx.fillStyle = "#f5ead5";
+  ctx.fillStyle = "#d6edf4";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = "#b7dce9";
+  ctx.lineWidth = 1;
+  for (let x = 0; x < canvas.width; x += 24) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+  }
+  for (let y = 0; y < canvas.height; y += 24) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+  }
   drawDecoration(ctx, data.decoration);
-  ctx.fillStyle = "#fffaf0";
-  roundedRect(ctx, 70, 60, 940, 1800, 48);
-  ctx.strokeStyle = data.decoration === "heavy" ? "#5c382b" : "#c58a52";
+  ctx.fillStyle = "#fffdf8";
+  roundedRect(ctx, 70, 60, 940, 1800, 2);
+  ctx.strokeStyle = data.decoration === "heavy" ? "#29343d" : "#647e8d";
   ctx.lineWidth = data.decoration === "heavy" ? 12 : 4;
   ctx.strokeRect(92, 82, 896, 1756);
 
-  ctx.fillStyle = "#79503a";
+  ctx.fillStyle = "#385d71";
   ctx.font = `700 25px ${font}`;
   ctx.fillText(data.serviceName, left, 145);
-  drawLines(data.characterLine, left, 205, { size: 23, weight: 500, color: "#9b735c", maxLines: 2, lineHeight: 30 });
+  drawLines(data.characterLine, left, 205, { size: 23, weight: 500, color: "#5d717c", maxLines: 2, lineHeight: 30 });
   drawLines(data.typeTitle, left, 285, { size: 68, weight: 900, maxLines: 2, lineHeight: 75 });
-  drawLines(data.typeDescription, left, 438, { size: 28, weight: 600, color: "#6e4b3a", maxLines: 2, lineHeight: 39 });
+  drawLines(data.typeDescription, left, 438, { size: 28, weight: 600, color: "#48525b", maxLines: 2, lineHeight: 39 });
 
   drawRule(530);
   drawLabel("CHARACTER STORY · 캐릭터 해석", left, 580);
-  drawLines(data.characterAnalysis, left, 625, { size: 27, weight: 600, color: "#5e4437", maxLines: 4, lineHeight: 39 });
+  drawLines(data.characterAnalysis, left, 625, { size: 27, weight: 600, color: "#48525b", maxLines: 4, lineHeight: 39 });
 
   drawLabel("CLICK FEEL · 어울리는 클릭감", left, 820);
   const rows = data.feelRows.filter(item => ["quiet", "weight", "tactile", "speed"].includes(item.id));
@@ -216,42 +224,42 @@ export async function createResultCardBlob(data) {
     const rowIndex = Math.floor(index / 2);
     const x = left + column * 415;
     const y = 850 + rowIndex * 95;
-    ctx.fillStyle = "#f1dfbe";
-    roundedRect(ctx, x, y, 395, 76, 18);
-    ctx.fillStyle = "#79503a";
+    ctx.fillStyle = "#f8d7e2";
+    roundedRect(ctx, x, y, 395, 76, 2);
+    ctx.fillStyle = "#385d71";
     ctx.font = `700 21px ${font}`;
     ctx.fillText(row.label, x + 24, y + 31);
-    ctx.fillStyle = "#3f291f";
+    ctx.fillStyle = "#29343d";
     ctx.font = `800 24px ${font}`;
     ctx.fillText(row.value, x + 24, y + 61);
   });
 
   drawLabel("BEST MATCH · 가장 어울리는 스위치", left, 1085);
-  ctx.fillStyle = "#f6ead5";
-  roundedRect(ctx, 115, 1110, 850, 360, 28);
+  ctx.fillStyle = "#eaf7fb";
+  roundedRect(ctx, 115, 1110, 850, 360, 2);
   let switchY = drawLines(data.switchName, 150, 1165, { size: 35, weight: 850, width: 780, maxLines: 2, lineHeight: 43 });
-  switchY = drawLines(data.switchMeta, 150, switchY + 2, { size: 21, weight: 650, color: "#8a6957", width: 780, maxLines: 1, lineHeight: 30 });
+  switchY = drawLines(data.switchMeta, 150, switchY + 2, { size: 21, weight: 650, color: "#5d717c", width: 780, maxLines: 1, lineHeight: 30 });
   drawLabel("이 스위치가 어울리는 이유", 150, switchY + 20);
-  drawLines(data.switchReason, 150, switchY + 60, { size: 24, weight: 600, color: "#5e4437", width: 780, maxLines: 4, lineHeight: 34 });
+  drawLines(data.switchReason, 150, switchY + 60, { size: 24, weight: 600, color: "#48525b", width: 780, maxLines: 4, lineHeight: 34 });
 
   drawLabel("BONUS · 다른 방향도 어울려요", left, 1495);
   (data.alternatives || []).slice(0, 2).forEach((alternative, index) => {
     const y = 1525 + index * 135;
-    ctx.fillStyle = index === 0 ? "#f7e8cc" : "#f2e4d7";
-    roundedRect(ctx, 115, y, 850, 115, 23);
-    ctx.fillStyle = "#9b5f37";
+    ctx.fillStyle = index === 0 ? "#edf6f1" : "#fbe0e9";
+    roundedRect(ctx, 115, y, 850, 115, 2);
+    ctx.fillStyle = "#385d71";
     ctx.font = `800 20px ${font}`;
     ctx.fillText(alternative.label, 150, y + 35);
     drawLines(alternative.name, 150, y + 72, { size: 25, weight: 800, width: 550, maxLines: 1, lineHeight: 30 });
     ctx.textAlign = "right";
-    ctx.fillStyle = "#8a6957";
+    ctx.fillStyle = "#5d717c";
     ctx.font = `600 19px ${font}`;
     ctx.fillText(alternative.meta, 925, y + 72);
     ctx.textAlign = "left";
   });
 
   drawRule(1790);
-  ctx.fillStyle = "#79503a";
+  ctx.fillStyle = "#385d71";
   ctx.font = `700 22px ${font}`;
   ctx.fillText(brandSignature(data.legacyName, data.brandName), left, 1825);
   ctx.textAlign = "right";

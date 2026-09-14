@@ -66,6 +66,7 @@ export const QUESTION_COPY_MIGRATIONS = Object.freeze({
   ],
   "Q4.question": [
     "다른 사람을 대하는 태도는?",
+    "다른 사람을 대하는 태도로 가장 가까운 것은?",
     "다른 사람을 대하는 태도는 어떤가?"
   ],
   "Q4.A": [

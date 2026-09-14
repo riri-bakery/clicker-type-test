@@ -49,7 +49,7 @@ export const DEFAULT_QUESTIONS = [
   {
     id: "Q4", category: "", enabled: true, scope: "common", weight: 1,
     axisWeights: { warmth: 0.06, smoothness: 0.08, tactile: 0.05, quiet: 0.04 },
-    question: "다른 사람을 대하는 태도는 어떤가?",
+    question: "다른 사람을 대하는 태도로 가장 가까운 것은?",
     answers: [
       answer("A", "말은 적지만 필요한 것을 챙겨준다.", { warmth: 70, smoothness: 80, tactile: 25, quiet: 80 }),
       answer("B", "편안하고 다정하게 받아준다.", { warmth: 95, smoothness: 95, tactile: 15, quiet: 65 }),
